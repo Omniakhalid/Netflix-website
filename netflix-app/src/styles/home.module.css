@@ -2,5 +2,9 @@
     font-family: 'Nunito', sans-serif; margin: 0;
 }
 .home{
-     background-color: red;
- }
+   display: flex;
+   
+}
+.homeContainer{
+flex: 4;
+}
