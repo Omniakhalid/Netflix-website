@@ -11,9 +11,9 @@ background-color: white;
     justify-content: center;
 }
 .logo{
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
-    color: #6439ff ;
+    color: #b21c25 ;
 
 }
 hr{
@@ -29,7 +29,7 @@ ul{
     padding: 0;
 }
 .title{
-    font-size: 10px;
+    font-size: 20px;
     font-weight: bold;
     color: #999;
     margin-top: 15px;
@@ -46,7 +46,7 @@ background-color: #ece8ff;
 
 .icon{
 font-size: 18px;
-color: #7451f8;
+color: #b21c25;
 }
 
 span{
@@ -76,6 +76,4 @@ background-color: whitesmoke;
 .colorOption:nth-child(2){
     background-color: #333;
     }
-    .colorOption:nth-child(3){
-        background-color: blue;
-        }
+    

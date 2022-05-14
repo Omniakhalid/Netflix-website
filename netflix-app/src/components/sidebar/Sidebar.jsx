@@ -36,7 +36,7 @@ import classes from "../../styles/Sidebar.module.css"
          <div className={classes.bottom} >
              <div className={classes.colorOption}></div>
              <div className={classes.colorOption}></div>
-             <div className={classes.colorOption}></div>
+            
              
          </div>
          </div>
