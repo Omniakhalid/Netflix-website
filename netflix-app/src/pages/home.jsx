@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "../styles/home.module.css";
 import Navbar from "../components/Navbar";
-import Sidebar from "./../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 // import Users from "./Users";
 
 const Home = () => {
