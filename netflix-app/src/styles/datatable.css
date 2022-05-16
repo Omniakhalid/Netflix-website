@@ -1,0 +1,30 @@
+.datatable {
+  height: 100%;
+  padding: 10px;
+  /* width: 100%; */
+}
+.cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.viewButton {
+  cursor: pointer;
+  padding: 2px 5px;
+  font-weight: bold;
+
+  border-radius: 5px;
+  color: rgba(95, 62, 214, 0.61);
+
+  border: 1px solid #b21c25;
+}
+
+.deleteButton {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: rgba(168, 4, 4, 0.562);
+
+  border: 1px solid #b21c25;
+}
