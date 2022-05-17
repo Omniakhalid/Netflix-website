@@ -1,8 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import "../styles/datatable.css";
-import { userColumns, userRows } from "../App/datatablesource";
-import {useEffect,useState} from 'react'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Datatable = () => {
   const actionColumn = [
@@ -22,12 +21,12 @@ const Datatable = () => {
   ];
   const [data1, setdata1] = useState();
 
-    useEffect(() => {
-      axios
-        .get("https://jsonplaceholder.typicode.com/users")
-        .then((results) => setdata1(results.data))
-      //  .then((data) => console.log(data1));
-    }, []);
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((results) => setdata1(results.data));
+    //  .then((data) => console.log(data1));
+  }, []);
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },

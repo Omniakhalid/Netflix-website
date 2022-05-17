@@ -1,0 +1,163 @@
+.TvshowDetails {
+  display: flex;
+  width: 100%;
+}
+.TvshowDetailsContainer {
+  flex: 6;
+}
+
+.top {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.left {
+  flex: 1;
+  padding: 20px;
+  background-color: rgba(245, 220, 220, 0.397);
+}
+.item {
+  display: flex;
+  gap: 20px;
+}
+
+.itemImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.tvshow {
+  flex: 4;
+  padding: 20px;
+}
+
+.tvshowTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tvshowAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tvshowTop {
+  display: flex;
+}
+
+.tvshowTopLeft,
+.tvshowTopRight {
+  flex: 1;
+}
+
+.tvshowTopRight {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.tvshowInfoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.tvshowInfoTop {
+  display: flex;
+  align-items: center;
+}
+
+.tvshowName {
+  font-weight: 600;
+}
+
+.tvshowInfoBottom {
+  margin-top: 10px;
+}
+
+.tvshowInfoItem {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tvshowInfoKey {
+  margin-right: 20px;
+}
+
+.tvshowInfoValue {
+  font-weight: 300;
+}
+
+.tvshowBottom {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.tvshowForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tvshowFormLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.tvshowFormLeft > label {
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.tvshowFormLeft > input {
+  margin-bottom: 10px;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.tvshowFormLeft > select {
+  margin-bottom: 10px;
+}
+
+.tvshowUploadImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.tvshowFormRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.tvshowUpload {
+  display: flex;
+  align-items: center;
+}
+
+.tvshowButton {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}

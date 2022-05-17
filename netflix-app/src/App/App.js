@@ -1,13 +1,16 @@
-//import classes from "../styles/home.module.css";
-import Home from "../pages/Home";
-// import Users from "../pages/Users";
-import NotFound from "../pages/NotFound";
-// import ViewUser from "../pages/ViewUser";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import List from "./../pages/List";
-import New from "./../pages/New";
+import Home from "./../pages/Home";
 import Login from "./../pages/Login";
-import Single from "./../pages/Single";
+import MoviesList from "./../pages/lists/MoviesList";
+import UserDetails from "./../pages/details/UserDetails";
+import MovieDetails from "./../pages/details/MovieDetails";
+
+import UserList from "../pages/lists/UsersList";
+import AddNewMovie from "./../pages/addNew/AddNewMovie";
+import TvshowsList from "./../pages/lists/TvshowsList";
+import NotFound from "./../pages/NotFound";
+import TvshowDetails from "./../pages/details/TvshowDetails";
+import AddNewTvshow from "./../pages/addNew/AddNewTvshow";
 
 function App() {
   return (
@@ -19,21 +22,20 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route path="new" element={<New />} />
+              <Route index element={<UserList />} />
+              <Route path=":userId" element={<UserDetails />} />
             </Route>
 
-            <Route path="Movie">
-              <Route index element={<List />} />
-              <Route path=":movieId" element={<Single />} />
-              <Route path="new" element={<New />} />
+            <Route path="movie">
+              <Route index element={<MoviesList />} />
+              <Route path=":movieId" element={<MovieDetails />} />
+              <Route path="new" element={<AddNewMovie />} />
             </Route>
 
             <Route path="tvshow">
-              <Route index element={<List />} />
-              <Route path=":tvshowId" element={<Single />} />
-              <Route path="new" element={<New />} />
+              <Route index element={<TvshowsList />} />
+              <Route path=":tvshowId" element={<TvshowDetails />} />
+              <Route path="new" element={<AddNewTvshow />} />
             </Route>
 
             <Route path="*" element={<NotFound />}></Route>
