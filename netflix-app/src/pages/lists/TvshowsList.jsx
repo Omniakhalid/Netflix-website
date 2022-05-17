@@ -5,18 +5,19 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { tvShows } from "./../dummyData";
+import {useState} from 'react'
 const TvshowsList = () => {
-  const movies = tvShows;
+  //const movies = tvShows;
   // const { lists, dispatch } = useContext(ListContext);
 
   // useEffect(() => {
   //   getLists(dispatch);
   // }, [dispatch]);
-
+  const [tvs, setTvs] = useState(tvShows);
   const handleDelete = (id) => {
-    //deleteList(id, dispatch);
+    setTvs(tvs.filter((item) => item._id !== id));
   };
-
+  
   const columns = [
     { field: "_id", headerName: "ID", width: 250 },
     { field: "title", headerName: "title", width: 250 },
@@ -38,6 +39,7 @@ const TvshowsList = () => {
               className="tvshowListDelete"
               onClick={() => handleDelete(params.row._id)}
             />
+
           </>
         );
       },
@@ -50,8 +52,8 @@ const TvshowsList = () => {
       <div className="TvshowListContainer">
         <Navbar />
         <div className="tvshowList">
-          <DataGrid
-            rows={movies}
+        <DataGrid
+            rows={tvs}
             disableSelectionOnClick
             columns={columns}
             pageSize={8}
