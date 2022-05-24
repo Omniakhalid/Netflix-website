@@ -1,6 +1,6 @@
 import React from "react";
 import ".././../styles/details/UserDetails.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import Navbar from "./../../components/Navbar";
 import Sidebar from "./../../components/Sidebar";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";

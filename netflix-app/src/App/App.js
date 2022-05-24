@@ -11,9 +11,11 @@ import TvshowsList from "./../pages/lists/TvshowsList";
 import NotFound from "./../pages/NotFound";
 import TvshowDetails from "./../pages/details/TvshowDetails";
 import AddNewTvshow from "./../pages/addNew/AddNewTvshow";
-
+import {Provider} from 'react-redux';
+import store from '../redux/store' 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -43,6 +45,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </Provider>
   );
 }
 

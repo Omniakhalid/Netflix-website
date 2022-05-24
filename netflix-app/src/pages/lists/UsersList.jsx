@@ -6,22 +6,38 @@ import ".././../styles/lists/UserList.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { userRows } from "../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Sidebar from "./../../components/Sidebar";
 import Navbar from "./../../components/Navbar";
-
+import axios from 'axios';
+import {useSelector,useDispatch} from 'react-redux';
+import {getAllUsers} from '../../redux/actions/usersActions'
 export default function UserList() {
-  const [data, setData] = useState(userRows);
+  //const [data, setData] = useState(userRows);
+  const data = useSelector(state=>state.users);
+  const dispatch=useDispatch();
 
+  useEffect(()=>{
+    axios.get("http://localhost:8000/Netflix-API/getTest")
+    .then((res)=>{
+      dispatch(getAllUsers(res.data.data));
+       console.log(data);
+      //console.log(res.data);
+      //setData(res.data.data);
+    });
+  
+ },[]);
+  
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    console.log(id);
+    //setData(data.filter((item) => item._id !== id));
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 190 },
     {
-      field: "user",
+      field: "userName",
       headerName: "User",
       width: 200,
       renderCell: (params) => {
@@ -51,12 +67,12 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/users/" + params.row.id}>
+            <Link to={{pathname: "/users/" + params.row._id, user: params.row}}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutlineIcon
               className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );
@@ -65,17 +81,20 @@ export default function UserList() {
   ];
 
   return (
-    <div className="userList">
+    <div className="usersList">
       <Sidebar />
       <div className="userListContainer">
         <Navbar />
+        <div className="userList">
         <DataGrid
           rows={data}
           disableSelectionOnClick
           columns={columns}
           pageSize={10}
           checkboxSelection
+          getRowId={(r) => r._id}
         />
+        </div>
       </div>
     </div>
   );

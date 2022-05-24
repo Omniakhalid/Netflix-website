@@ -5,7 +5,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { tvShows } from "./../dummyData";
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import axios from 'axios';
 const TvshowsList = () => {
   //const movies = tvShows;
   // const { lists, dispatch } = useContext(ListContext);
@@ -14,6 +15,14 @@ const TvshowsList = () => {
   //   getLists(dispatch);
   // }, [dispatch]);
   const [tvs, setTvs] = useState(tvShows);
+  useEffect(()=>{
+    axios.get("http://localhost:8000/Netflix-API/allMovies")
+    .then((res)=>{
+      //console.log(res.data.data);
+      setTvs(res.data.data);
+    });
+  
+ },[]);
   const handleDelete = (id) => {
     setTvs(tvs.filter((item) => item._id !== id));
   };

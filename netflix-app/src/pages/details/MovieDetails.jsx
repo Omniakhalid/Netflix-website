@@ -1,7 +1,7 @@
 import ".././../styles/details/MovieDetails.css";
 import Navbar from "./../../components/Navbar";
 import Sidebar from "./../../components/Sidebar";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PublishIcon from "@mui/icons-material/Publish";
 import { moviesRows } from "../dummyData";
 const MovieDetails = () => {

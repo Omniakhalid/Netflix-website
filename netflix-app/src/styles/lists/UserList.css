@@ -1,10 +1,17 @@
-.userList {
+
+.usersList {
   display: flex;
   width: 100%;
 }
+
 .userListContainer {
   flex: 6;
 }
+.userList {
+  flex: 4;
+  height: 600px;
+}
+
 .userListUser {
   display: flex;
   align-items: center;
