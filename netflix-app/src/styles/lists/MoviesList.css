@@ -10,6 +10,25 @@
   height: 600px;
 }
 
+.movieTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+ 
+}
+.movieAddButton {
+  width: 180px;
+  border: none;
+  padding: 5px;
+  background-color: #b22;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .movieListItem {
   display: flex;
   align-items: center;

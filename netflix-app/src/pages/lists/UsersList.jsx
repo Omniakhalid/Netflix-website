@@ -85,6 +85,14 @@ import {getAllUsers,deleteUser} from '../../redux/actions/usersActions'
       <div className="userListContainer">
         <Navbar />
         <div className="userList">
+
+        <div className="userTitleContainer">
+        <Link to="/user/new" replace>
+              <button className="userAddButton">Add New User</button>
+            </Link>
+          
+            </div>
+
         <DataGrid
           rows={data}
           disableSelectionOnClick

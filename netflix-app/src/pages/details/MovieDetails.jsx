@@ -9,10 +9,10 @@ import axios from 'axios';
 
 import {useSelector,useDispatch} from 'react-redux';
 import {editMovie} from '../../redux/actions/movieAction'
-import { moviesRows } from "../dummyData";
+
 
 const MovieDetails = () => {
-   // const movie = moviesRows[1];
+   
  const movie = useSelector(state=>state.movie);
   const dispatch=useDispatch();
   
@@ -35,9 +35,7 @@ const MovieDetails = () => {
         <div className="movie">
           <div className="movieTitleContainer">
             <h1 className="movieTitle">Movie</h1>
-            <Link to="/movie/new" replace>
-              <button className="movieAddButton">Add New Movie</button>
-            </Link>
+            
           </div>
           <div className="movieTop">
             <div className="movieTopRight">

@@ -83,11 +83,19 @@ const MoviesList = () => {
   ];
 
   return (
+    
     <div className="MoviesList">
       <Sidebar />
       <div className="MoviesListContainer">
         <Navbar />
         <div className="movieList">
+        
+          <div className="movieTitleContainer">
+        <Link to="/movie/new" replace>
+              <button className="movieAddButton">Add New Movie</button>
+            </Link>
+          
+            </div>
           <DataGrid
             rows={movies}
             disableSelectionOnClick
