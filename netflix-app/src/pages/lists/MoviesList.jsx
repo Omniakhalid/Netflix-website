@@ -8,7 +8,7 @@ import { moviesRows } from "../dummyData";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux';
-import {getAllMovies} from '../../redux/actions/movieAction'
+import {getAllMovies,deleteMovie} from '../../redux/actions/movieAction'
 
 const MoviesList = () => {
   //const [movies, setmovies] = useState(moviesRows);
@@ -17,9 +17,15 @@ const MoviesList = () => {
   const dispatch=useDispatch();
 
   const handleDelete = (id) => {
-    console.log(id);
-    axios.delete("http://localhost:8000/Netflix-API/deleteMovie/" +id);
-    //setmovies(movies.filter((item) => item._id !== id));
+    
+    axios.delete("http://localhost:8000/Netflix-API/deleteMovie/" +id)
+    .then((res)=>{
+      dispatch(deleteMovie(id));
+      //movies.filter((item) => item._id !== id
+      console.log(movies);
+     //setmovies(moviesRedux);
+    });
+   //movies.filter((item) => item._id !== id);
   };
   useEffect(()=>{
      axios.get("http://localhost:8000/Netflix-API/allMovies")
@@ -29,7 +35,7 @@ const MoviesList = () => {
       //setmovies(moviesRedux);
      });
    
-  },[]);
+  },[dispatch]);
 
 
 

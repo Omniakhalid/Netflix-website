@@ -1,4 +1,6 @@
 import {GET_ALL_MOVIES} from '../actionTypes'
+import {DELETE_MOVIE} from '../actionTypes'
+
 //state =>current data, action => new
  const initialState=[{
     "_id": "628a5d9e4fc1c9b351109589",
@@ -19,8 +21,12 @@ export const moviesReducer=(state=initialState,{type,payload})=>{
 switch (type){
     case GET_ALL_MOVIES:
     return payload;
+
+    case DELETE_MOVIE:
+    return state.filter((item) => item._id !== payload);
+    
     default:
     return state;
 }
-return //new state
+
 }
