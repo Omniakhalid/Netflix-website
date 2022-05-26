@@ -9,6 +9,14 @@ import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import PublishIcon from "@mui/icons-material/Publish";
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import axios from 'axios';
+
+import {useSelector,useDispatch} from 'react-redux';
+import {editUser} from '../../redux/actions/usersActions'
+
+
 // import {
 //   CalendarToday,
 //   LocationSearching,
@@ -19,6 +27,22 @@ import PublishIcon from "@mui/icons-material/Publish";
 // } from "@material-ui/icons";
 
 export default function UserDetails() {
+  const user = useSelector(state=>state.user);
+  const dispatch=useDispatch();
+  
+  const params = useParams();
+
+  const idURL=params.movieId;
+
+  useEffect((params)=>{ 
+    axios.get("http://localhost:8000/Netflix-API/getUserById/"+idURL)
+  .then((res)=>{
+    dispatch(editUser(res.data.data));
+    console.log(res.data.data);
+  });
+  },[]);
+
+
   return (
     <div className="UserDetails">
       <Sidebar />
@@ -36,7 +60,7 @@ export default function UserDetails() {
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
-                <span className="userShowUsername">Anna Becker</span>
+                <span className="userShowUsername">{user.userName}</span>
                 <span className="userShowUserTitle">Software Engineer</span>
               </div>
             </div>
@@ -44,7 +68,7 @@ export default function UserDetails() {
               <span className="userShowTitle">Account Details</span>
               <div className="userShowInfo">
                 <PermIdentityIcon className="userShowIcon" />
-                <span className="userShowInfoTitle">annabeck99</span>
+                <span className="userShowInfoTitle">{user.userName}</span>
               </div>
               <div className="userShowInfo">
                 <CalendarTodayIcon className="userShowIcon" />
@@ -53,11 +77,11 @@ export default function UserDetails() {
               <span className="userShowTitle">Contact Details</span>
               <div className="userShowInfo">
                 <PhoneAndroidIcon className="userShowIcon" />
-                <span className="userShowInfoTitle">+1 123 456 67</span>
+                <span className="userShowInfoTitle">{user.phone}</span>
               </div>
               <div className="userShowInfo">
                 <MailOutlineIcon className="userShowIcon" />
-                <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+                <span className="userShowInfoTitle">{user.email}</span>
               </div>
               <div className="userShowInfo">
                 <LocationSearchingIcon className="userShowIcon" />
@@ -81,7 +105,7 @@ export default function UserDetails() {
                   <label>Full Name</label>
                   <input
                     type="text"
-                    placeholder="Anna Becker"
+                    placeholder={user.userName}
                     className="userUpdateInput"
                   />
                 </div>
@@ -89,7 +113,7 @@ export default function UserDetails() {
                   <label>Email</label>
                   <input
                     type="text"
-                    placeholder="annabeck99@gmail.com"
+                    placeholder={user.email}
                     className="userUpdateInput"
                   />
                 </div>
@@ -97,7 +121,7 @@ export default function UserDetails() {
                   <label>Phone</label>
                   <input
                     type="text"
-                    placeholder="+1 123 456 67"
+                    placeholder={user.phone}
                     className="userUpdateInput"
                   />
                 </div>

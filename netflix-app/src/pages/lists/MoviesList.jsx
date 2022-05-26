@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux';
-import {getAllMovies,deleteMovie} from '../../redux/actions/movieAction'
+import {getAllMovies,deleteMovie,editMovie} from '../../redux/actions/movieAction'
 
 const MoviesList = () => {
   const movies = useSelector(state=>state.movies);
@@ -30,7 +30,14 @@ const MoviesList = () => {
    
   },[dispatch]);
 
-
+  // const handleEdit = (id) => {
+    
+  //   axios.get("http://localhost:8000/Netflix-API/getMovieById/" +id)
+  //   .then((res)=>{
+  //     dispatch(editMovie(id));
+  //     console.log(movies);
+  //   });
+  // };
 
   const columns = [
     { field: "_id", headerName: "ID", width: 220 },
@@ -62,7 +69,8 @@ const MoviesList = () => {
             <Link
               to={{ pathname: "/movie/" + params.row._id, movie: params.row }}
             >
-              <button className="movieListEdit">Edit</button>
+              <button className="movieListEdit" >Edit</button>
+              {/* onClick={() => handleEdit(params.row._id)} */}
             </Link>
             <DeleteOutlineIcon
               className="movieListDelete"

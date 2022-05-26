@@ -1,7 +1,6 @@
-import {GET_ALL_MOVIES,DELETE_MOVIE,EDITE_MOVIE} from '../actionTypes'
+import {EDITE_MOVIE} from '../actionTypes'
 
-//state =>current data, action => new
- const initialState=[{
+ const initialState={
     "_id": "628a5d9e4fc1c9b351109589",
     "title": "spiderman",
     "description": "my first movie",
@@ -13,19 +12,14 @@ import {GET_ALL_MOVIES,DELETE_MOVIE,EDITE_MOVIE} from '../actionTypes'
     "__v": 0,
     "createdAt": "2022-05-22T15:58:22.354Z",
     "updatedAt": "2022-05-22T15:58:22.354Z"
-    }];
+    };
  
 
-export const moviesReducer=(state=initialState,{type,payload})=>{
+export const movieReducer=(state=initialState,{type,payload})=>{
 switch (type){
-    case GET_ALL_MOVIES:
-    return payload;
-
-    case DELETE_MOVIE:
-    return state.filter((item) => item._id !== payload);
-
     case EDITE_MOVIE:
-    return state.filter((item) => item._id === payload);
+    return payload;
+    //state.filter((item) => item._id === payload);
     
     default:
     return state;

@@ -1,6 +1,6 @@
-import { GET_ALL_MOVIES} from '../actionTypes'
+import { GET_ALL_MOVIES,EDITE_MOVIE,DELETE_MOVIE} from '../actionTypes'
 
-import { DELETE_MOVIE} from '../actionTypes'
+
 
 export const getAllMovies=(movies)=>({
     type : GET_ALL_MOVIES ,
@@ -13,3 +13,8 @@ export const getAllMovies=(movies)=>({
     payload: _id
     
  });
+ export const editMovie=(movie)=>({
+   type : EDITE_MOVIE ,
+   payload: movie
+   
+});

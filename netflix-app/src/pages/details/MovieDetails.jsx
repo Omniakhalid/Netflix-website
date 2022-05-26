@@ -3,10 +3,30 @@ import Navbar from "./../../components/Navbar";
 import Sidebar from "./../../components/Sidebar";
 import { Link } from "react-router-dom";
 import PublishIcon from "@mui/icons-material/Publish";
-import { moviesRows } from "../dummyData";
-const MovieDetails = () => {
-  const movie = moviesRows[1]; // data Should be come from Api to redux or context api then arrive here [Noted by Fahmy]
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import axios from 'axios';
 
+import {useSelector,useDispatch} from 'react-redux';
+import {editMovie} from '../../redux/actions/movieAction'
+import { moviesRows } from "../dummyData";
+
+const MovieDetails = () => {
+   // const movie = moviesRows[1];
+ const movie = useSelector(state=>state.movie);
+  const dispatch=useDispatch();
+  
+  const params = useParams();
+
+  const idURL=params.movieId;
+
+  useEffect((params)=>{ 
+    axios.get("http://localhost:8000/Netflix-API/getMovieById/"+idURL)
+  .then((res)=>{
+    dispatch(editMovie(res.data.data));
+    console.log(res.data.data);
+  });
+},[]);
   return (
     <div className="MovieDetails">
       <Sidebar />
@@ -22,7 +42,7 @@ const MovieDetails = () => {
           <div className="movieTop">
             <div className="movieTopRight">
               <div className="movieInfoTop">
-                <img src={movie.img} alt="" className="movieInfoImg" />
+                <img src={movie.image} alt="" className="movieInfoImg" />
                 <span className="movieName">{movie.title}</span>
               </div>
               <div className="movieInfoBottom">
@@ -63,8 +83,8 @@ const MovieDetails = () => {
               </div>
               <div className="movieFormRight">
                 <div className="movieUpload">
-                  <img src={movie.img} alt="" className="movieUploadImg" />
-                  <label for="file">
+                  <img src={movie.image} alt="" className="movieUploadImg" />
+                  <label htmlFor="file">
                     <PublishIcon className="imgUploadicon" />
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
