@@ -3,17 +3,14 @@ import Navbar from "./../../components/Navbar";
 import Sidebar from "./../../components/Sidebar";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { moviesRows } from "../dummyData";
+import { useEffect } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux';
 import {getAllMovies,deleteMovie} from '../../redux/actions/movieAction'
 
 const MoviesList = () => {
-  //const [movies, setmovies] = useState(moviesRows);
   const movies = useSelector(state=>state.movies);
-
   const dispatch=useDispatch();
 
   const handleDelete = (id) => {
@@ -21,18 +18,14 @@ const MoviesList = () => {
     axios.delete("http://localhost:8000/Netflix-API/deleteMovie/" +id)
     .then((res)=>{
       dispatch(deleteMovie(id));
-      //movies.filter((item) => item._id !== id
       console.log(movies);
-     //setmovies(moviesRedux);
     });
-   //movies.filter((item) => item._id !== id);
   };
   useEffect(()=>{
      axios.get("http://localhost:8000/Netflix-API/allMovies")
      .then((res)=>{
        dispatch(getAllMovies(res.data.data));
        console.log(movies);
-      //setmovies(moviesRedux);
      });
    
   },[dispatch]);

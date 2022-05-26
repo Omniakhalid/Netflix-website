@@ -1,4 +1,4 @@
-import { GET_ALL_USERS} from '../actionTypes'
+import { GET_ALL_USERS,DELETE_USER} from '../actionTypes'
 //state =>current data, action => new
  const initialState=[{
     _id: "628a487bec6d96c23ae9523d",
@@ -18,6 +18,10 @@ export const usersReducer=(state=initialState,{type,payload})=>{
 switch (type){
     case GET_ALL_USERS:
     return payload;
+
+    case DELETE_USER:
+      return state.filter((item) => item._id !== payload);
+
     default:
     return state;
 }

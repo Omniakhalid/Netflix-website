@@ -1,37 +1,36 @@
-// import Navbar from "../../components/Navbar";
-// import Sidebar from "../../components/Sidebar";
-// import { DeleteOutline } from "@material-ui/icons";
-// import { DataGrid } from "@material-ui/data-grid";
 import ".././../styles/lists/UserList.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { userRows } from "../dummyData";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Sidebar from "./../../components/Sidebar";
 import Navbar from "./../../components/Navbar";
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux';
-import {getAllUsers} from '../../redux/actions/usersActions'
-export default function UserList() {
-  //const [data, setData] = useState(userRows);
+import {getAllUsers,deleteUser} from '../../redux/actions/usersActions'
+
+ const UserList = () => {
   const data = useSelector(state=>state.users);
   const dispatch=useDispatch();
 
   useEffect(()=>{
-    axios.get("http://localhost:8000/Netflix-API/getTest")
+    axios.get("http://localhost:8000/Netflix-API/getAllUsers")
     .then((res)=>{
       dispatch(getAllUsers(res.data.data));
        console.log(data);
-      //console.log(res.data);
-      //setData(res.data.data);
+    
     });
   
- },[]);
+ },[dispatch]);
   
+ 
   const handleDelete = (id) => {
-    console.log(id);
-    //setData(data.filter((item) => item._id !== id));
+    
+    axios.delete("http://localhost:8000/Netflix-API/deleteUser/" +id)
+    .then((res)=>{
+      dispatch(deleteUser(id));
+      console.log(data);
+    });
   };
 
   const columns = [
@@ -90,7 +89,7 @@ export default function UserList() {
           rows={data}
           disableSelectionOnClick
           columns={columns}
-          pageSize={10}
+          pageSize={8}
           checkboxSelection
           getRowId={(r) => r._id}
         />
@@ -99,3 +98,4 @@ export default function UserList() {
     </div>
   );
 }
+export default UserList;
