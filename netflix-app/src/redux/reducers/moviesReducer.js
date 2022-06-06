@@ -1,4 +1,4 @@
-import {GET_ALL_MOVIES,DELETE_MOVIE,GET_MOVIE} from '../actionTypes'
+import {GET_ALL_MOVIES,DELETE_MOVIE,GET_MOVIE,CREATE_MOVIE} from '../actionTypes'
 
 //state =>current data, action => new
  const initialState=[{
@@ -26,6 +26,9 @@ switch (type){
 
     case GET_MOVIE:
     return state.filter((item) => item._id === payload);
+
+    case  CREATE_MOVIE:
+        return [...state,payload];
     
     default:
     return state;
