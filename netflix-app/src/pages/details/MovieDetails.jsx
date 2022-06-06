@@ -20,9 +20,12 @@ const MovieDetails = () => {
   const [title, setTitle] = useState(movie.title);
   const [video, setVideo] = useState(movie.video);
   const [year, setYear] = useState(movie.year);
-  const [genre, setGenre] = useState(movie.genre);
-  const [trailer, setTrailer] = useState(movie.trailer);
-  const [limit, setLimit] = useState(movie.limit);
+  const [description, setDescription] = useState(movie.description);
+  const [image, setImage] = useState(movie.image);
+  const [thumbnail, setThumbnail] = useState(movie.thumbnail);
+  const [category, setCategory] = useState(movie.category);
+
+  
 
   useEffect((params) => {
     axios
@@ -36,8 +39,8 @@ const MovieDetails = () => {
   const getInputTitle = (event) => {
     setTitle(event.target.value);
   };
-  const getInputGenre = (event) => {
-    setGenre(event.target.value);
+  const getInputImage = (event) => {
+    setImage(event.target.value);
   };
 
   const getInputVideo = (event) => {
@@ -47,13 +50,15 @@ const MovieDetails = () => {
     setYear(event.target.value);
   };
 
-  const getInputTrailer = (event) => {
-    setTrailer(event.target.value);
-    console.log(trailer);
+  const getInputDescription = (event) => {
+    setDescription(event.target.value);
+    
   };
-  const getInputLimit = (event) => {
-    setLimit(event.target.value);
-    console.log(limit);
+  const getInputThumbnail = (event) => {
+    setThumbnail(event.target.value);
+  };
+  const getInputCategory = (event) => {
+    setCategory(event.target.value);
   };
   {
     /* { title, description, image, thumbnail, video, year, duration } */
@@ -63,12 +68,26 @@ const MovieDetails = () => {
       .put("http://localhost:8000/Netflix-API/updateMovie/" + idURL, {
         title,
         video,
-        trailer,
-        limit,
+       
+        description,
+        image,
+        thumbnail,
+        year,
+        category
       })
+     
       .then((res) => {
         console.log("updaaaaaate");
-        dispatch(updateMovie(idURL, { title, video, trailer, limit }));
+        dispatch(updateMovie(idURL, {
+          title,
+          video,
+         
+          description,
+          image,
+          thumbnail,
+          year,
+          category
+        }));
         console.log("updaaaaaat222e");
       });
   }
@@ -89,21 +108,18 @@ const MovieDetails = () => {
                 <span className="movieName">{movie.title}</span>
               </div>
               <div className="movieInfoBottom">
+                
                 <div className="movieInfoItem">
-                  <span className="movieInfoKey">id:</span>
-                  <span className="movieInfoValue">{movie._id}</span>
-                </div>
-                <div className="movieInfoItem">
-                  <span className="movieInfoKey">genre:</span>
-                  <span className="movieInfoValue">{movie.genre}</span>
+                  <span className="movieInfoKey">Description</span>
+                  <span className="movieInfoValue">{movie.description}</span>
                 </div>
                 <div className="movieInfoItem">
                   <span className="movieInfoKey">year:</span>
                   <span className="movieInfoValue">{movie.year}</span>
                 </div>
                 <div className="movieInfoItem">
-                  <span className="movieInfoKey">limit:</span>
-                  <span className="movieInfoValue">{movie.limit}</span>
+                  <span className="movieInfoKey">Category:</span>
+                  <span className="movieInfoValue">{movie.category}</span>
                 </div>
               </div>
             </div>
@@ -124,23 +140,18 @@ const MovieDetails = () => {
                   placeholder={movie.year}
                   onChange={getInputYear}
                 />
-                <label>Genre</label>
+                <label>Category</label>
                 <input
                   type="text"
-                  placeholder={movie.genre}
-                  onChange={getInputGenre}
+                  placeholder={movie.category}
+                  onChange={getInputCategory}
                 />
-                <label>Limit</label>
+                
+                <label>Description</label>
                 <input
                   type="text"
-                  placeholder={movie.limit}
-                  onChange={getInputLimit}
-                />
-                <label>Trailer</label>
-                <input
-                  type="text"
-                  placeholder={movie.trailer}
-                  onChange={getInputTrailer}
+                  placeholder={movie.description}
+                  onChange={getInputDescription}
                 />
                 <label>Video</label>
                 <input
