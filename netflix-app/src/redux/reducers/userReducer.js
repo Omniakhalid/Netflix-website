@@ -1,4 +1,4 @@
-import {EDITE_USER} from '../actionTypes'
+import {GET_USER} from '../actionTypes'
 
  const initialState={
     _id: "628a487bec6d96c23ae9523d",
@@ -16,7 +16,7 @@ import {EDITE_USER} from '../actionTypes'
 
 export const userReducer=(state=initialState,{type,payload})=>{
 switch (type){
-    case EDITE_USER:
+    case GET_USER:
     return payload;
     //state.filter((item) => item._id === payload);
     

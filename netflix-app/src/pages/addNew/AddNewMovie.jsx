@@ -2,14 +2,24 @@ import { useState, React } from "react";
 import ".././../styles/addNew/AddNewMovie.css";
 import Sidebar from "./../../components/Sidebar";
 import Navbar from "./../../components/Navbar";
+import axios from "axios";
+
+import { useDispatch } from "react-redux";
+import { createMovie } from "../../redux/actions/movieAction";
+
 const AddNewMovie = () => {
+  const dispatch = useDispatch();
+
   const [movie, setMovie] = useState(null);
-  const [img, setImg] = useState(null);
-  const [imgTitle, setImgTitle] = useState(null);
-  const [imgSm, setImgSm] = useState(null);
-  const [trailer, setTrailer] = useState(null);
-  const [video, setVideo] = useState(null);
-  const [uploaded, setUploaded] = useState(0);
+
+  const [image, setImg] = useState();
+  const [title, setTitle] = useState();
+  const [thumbnail, setImgSm] = useState();
+  const [description, setDescrption] = useState();
+  const [video, setVideo] = useState();
+  const [category, setCategory] = useState();
+  const [year, setYear] = useState();
+  const [duration, setDuration] = useState();
 
   //const { dispatch } = useContext(MovieContext);
 
@@ -18,46 +28,34 @@ const AddNewMovie = () => {
     setMovie({ ...movie, [e.target.name]: value });
   };
 
-  // const upload = (items) => {
-  //   items.forEach((item) => {
-  //     const fileName = new Date().getTime() + item.label + item.file.name;
-  //     const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-  //           setMovie((prev) => {
-  //             return { ...prev, [item.label]: url };
-  //           });
-  //           setUploaded((prev) => prev + 1);
-  //         });
-  //       }
-  //     );
-  //   });
-  // };
-
-  const handleUpload = (e) => {
-    e.preventDefault();
-    // upload([
-    //   { file: img, label: "img" },
-    //   { file: imgTitle, label: "imgTitle" },
-    //   { file: imgSm, label: "imgSm" },
-    //   { file: trailer, label: "trailer" },
-    //   { file: video, label: "video" },
-    // ]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // createMovie(movie, dispatch);
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:8000/Netflix-API/addMovie", {
+        title,
+        description,
+        image,
+        thumbnail,
+        video,
+        year,
+        duration,
+        category,
+      })
+      .then(() => {
+        console.log("updaaaaaate");
+        dispatch(
+          createMovie({
+            title,
+            description,
+            image,
+            thumbnail,
+            video,
+            year,
+            duration,
+            category,
+          })
+        );
+        console.log("updaaaaaat222e");
+      });
   };
 
   return (
@@ -71,28 +69,22 @@ const AddNewMovie = () => {
             <div className="addMovieItem">
               <label>Image</label>
               <input
-                type="file"
+                type="text"
+                placeholder="Img"
                 id="img"
                 name="img"
-                onChange={(e) => setImg(e.target.files[0])}
+                onChange={(e) => setImg(e.target.value)}
               />
             </div>
-            <div className="addMovieItem">
-              <label>Title image</label>
-              <input
-                type="file"
-                id="imgTitle"
-                name="imgTitle"
-                onChange={(e) => setImgTitle(e.target.files[0])}
-              />
-            </div>
+
             <div className="addMovieItem">
               <label>Thumbnail image</label>
               <input
-                type="file"
+                type="text"
+                placeholder="Image"
                 id="imgSm"
                 name="imgSm"
-                onChange={(e) => setImgSm(e.target.files[0])}
+                onChange={(e) => setImgSm(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -101,7 +93,7 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Title"
                 name="title"
-                onChange={handleChange}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -110,7 +102,7 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="description"
                 name="desc"
-                onChange={handleChange}
+                onChange={(e) => setDescrption(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -119,16 +111,16 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Year"
                 name="year"
-                onChange={handleChange}
+                onChange={(e) => setYear(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
-              <label>Genre</label>
+              <label>Category</label>
               <input
                 type="text"
-                placeholder="Genre"
-                name="genre"
-                onChange={handleChange}
+                placeholder="Category"
+                name="category"
+                onChange={(e) => setCategory(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -137,50 +129,23 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Duration"
                 name="duration"
-                onChange={handleChange}
+                onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-            <div className="addMovieItem">
-              <label>Limit</label>
-              <input
-                type="text"
-                placeholder="limit"
-                name="limit"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="addMovieItem">
-              <label>Is Series?</label>
-              <select name="isSeries" id="isSeries" onChange={handleChange}>
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-              </select>
-            </div>
-            <div className="addMovieItem">
-              <label>Trailer</label>
-              <input
-                type="file"
-                name="trailer"
-                onChange={(e) => setTrailer(e.target.files[0])}
-              />
-            </div>
+
             <div className="addMovieItem">
               <label>Video</label>
               <input
-                type="file"
+                type="text"
+                placeholder="video url"
                 name="video"
-                onChange={(e) => setVideo(e.target.files[0])}
+                onChange={(e) => setVideo(e.target.value)}
               />
             </div>
-            {uploaded === 0 ? (
-              <button className="addMovieButton" onClick={handleSubmit}>
-                Create
-              </button>
-            ) : (
-              <button className="addMovieButton" onClick={handleUpload}>
-                Upload
-              </button>
-            )}
+
+            <button className="addMovieButton" onClick={handleSubmit}>
+              Create
+            </button>
           </form>
         </div>
       </div>

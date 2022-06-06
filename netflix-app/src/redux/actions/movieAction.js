@@ -1,4 +1,4 @@
-import { GET_ALL_MOVIES,EDITE_MOVIE,DELETE_MOVIE} from '../actionTypes'
+import { GET_ALL_MOVIES,GET_MOVIE,DELETE_MOVIE,UPDATE_MOVIE,CREATE_MOVIE} from '../actionTypes'
 
 
 
@@ -13,8 +13,22 @@ export const getAllMovies=(movies)=>({
     payload: _id
     
  });
- export const editMovie=(movie)=>({
-   type : EDITE_MOVIE ,
+ export const getMovie=(movie)=>({
+   type : GET_MOVIE ,
    payload: movie
    
 });
+
+export const updateMovie=(id,movie)=>({
+   type : UPDATE_MOVIE ,
+   payload: {id,movie}
+   
+});
+
+export const createMovie=(movie)=>({
+   type : CREATE_MOVIE ,
+   payload: movie
+   
+});
+
+

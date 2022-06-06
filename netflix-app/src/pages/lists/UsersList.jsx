@@ -43,22 +43,18 @@ import {getAllUsers,deleteUser} from '../../redux/actions/usersActions'
         return (
           <div className="userListUser">
             <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
+            {params.row.userName}
           </div>
         );
       },
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
+      field: "phone",
+      headerName: "Phone",
       width: 120,
     },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
-    },
+    
     {
       field: "action",
       headerName: "Action",

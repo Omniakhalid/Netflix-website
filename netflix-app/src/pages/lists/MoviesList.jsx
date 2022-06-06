@@ -54,10 +54,10 @@ const MoviesList = () => {
         );
       },
     },
+    
     { field: "description", headerName: "Description", width: 240 },
     { field: "year", headerName: "year", width: 120 },
     { field: "duration", headerName: "duration", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
 
     {
       field: "action",
