@@ -1,5 +1,5 @@
 
-import { GET_ALL_USERS,DELETE_USER,EDITE_USER} from '../actionTypes'
+import { GET_ALL_USERS,DELETE_USER,GET_USER} from '../actionTypes'
 
 export const getAllUsers=(users)=>({
     type : GET_ALL_USERS ,
@@ -11,8 +11,8 @@ export const getAllUsers=(users)=>({
     payload: _id
     
  });
- export const editUser=(user)=>({
-    type : EDITE_USER ,
+ export const getUser=(user)=>({
+    type : GET_USER ,
     payload: user
     
  });

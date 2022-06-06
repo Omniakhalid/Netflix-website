@@ -14,7 +14,7 @@ import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
 import {useSelector,useDispatch} from 'react-redux';
-import {editUser} from '../../redux/actions/usersActions'
+import {getUser} from '../../redux/actions/usersActions'
 
 
 // import {
@@ -32,12 +32,12 @@ export default function UserDetails() {
   
   const params = useParams();
 
-  const idURL=params.movieId;
+  const idURL=params.userId;
 
   useEffect((params)=>{ 
     axios.get("http://localhost:8000/Netflix-API/getUserById/"+idURL)
   .then((res)=>{
-    dispatch(editUser(res.data.data));
+    dispatch(getUser(res.data.data));
     console.log(res.data.data);
   });
   },[]);
@@ -146,7 +146,7 @@ export default function UserDetails() {
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
                 </div>
-                <button className="userUpdateButton">Update</button>
+                <button className="userUpdateButton" >Update</button>
               </div>
             </form>
           </div>

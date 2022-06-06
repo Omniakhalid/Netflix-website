@@ -1,4 +1,4 @@
-import {EDITE_MOVIE} from '../actionTypes'
+import {GET_MOVIE,UPDATE_MOVIE} from '../actionTypes'
 
  const initialState={
     "_id": "628a5d9e4fc1c9b351109589",
@@ -13,16 +13,29 @@ import {EDITE_MOVIE} from '../actionTypes'
     "createdAt": "2022-05-22T15:58:22.354Z",
     "updatedAt": "2022-05-22T15:58:22.354Z"
     };
- 
 
 export const movieReducer=(state=initialState,{type,payload})=>{
 switch (type){
-    case EDITE_MOVIE:
+    case GET_MOVIE:
     return payload;
     //state.filter((item) => item._id === payload);
     
-    default:
-    return state;
+    case  UPDATE_MOVIE :
+        state.map((item) =>{
+            if( item._id === payload.id)
+            return {...item,...payload}
+            else return item;
+        });
+        return {
+            ...state,
+            title: payload.title,
+          }
+        default:
+        return state;
 }
-
 }
+// case UPDATE_TUTORIAL:
+//     return tutorials.map((tutorial) => 
+//     {if (tutorial.id === payload.id) 
+//     {return {...tutorial,...payload,};} 
+//     else {return tutorial;}});
