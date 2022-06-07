@@ -3,7 +3,7 @@ const movies = require("../model/movies.model");
 //GET ALL
 const getAllMovies = async (req, res) => {
   const allMovies = await movies.find({});
-  res.json({ statusCode: 200, data:allMovies });
+  res.json({ statusCode: 200, data: allMovies });
 };
 
 //GET_BY_ID
@@ -11,29 +11,38 @@ const getMovieById = async (req, res) => {
   const _id = req.params.id;
 
   const movie = await movies.findById({ _id });
-  res.json({ statusCode: 200, data:movie });
+  res.json({ statusCode: 200, data: movie });
 };
 
 //CREATE
 const addMovie = async (req, res) => {
-  const { title, description, image, thumbnail, video, year, duration,category} =
-    req.body;
+  const newMovie = new movies({ ...req.body, image: req.file.path });
+  console.log(req);
   await movies
-    .insertMany({ title, description, image, thumbnail, video, year, duration })
+    .insertMany(newMovie)
     .then(() => {
       res.send("added Successfully");
+      console.log("added");
     })
     .catch((err) => res.json({ message: "my error", err }));
 };
 //UPDATE
 const updateMovie = async (req, res) => {
-  const { title, description, image, thumbnail, video, year, duration } =
-    req.body;
+  const {
+    title,
+    description,
+    image,
+    thumbnail,
+    video,
+    year,
+    duration,
+    category,
+  } = req.body;
   const _id = req.params.id;
   await movies
     .updateOne(
       { _id: _id },
-      { title, description, image, thumbnail, video, year, duration }
+      { title, description, image, thumbnail, video, year, duration, category }
     )
     .then(() => {
       res.send("Updated Successfully");

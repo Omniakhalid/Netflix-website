@@ -2,31 +2,40 @@ import { useState, React } from "react";
 import ".././../styles/addNew/AddNewMovie.css";
 import Sidebar from "./../../components/Sidebar";
 import Navbar from "./../../components/Navbar";
+import axios from "axios";
+
+import { useDispatch } from "react-redux";
+import { createMovie } from "../../redux/actions/movieAction";
+
 const AddNewMovie = () => {
+  const dispatch = useDispatch();
+
   const [movie, setMovie] = useState(null);
-  const [img, setImg] = useState(null);
-  const [imgTitle, setImgTitle] = useState(null);
-  const [imgSm, setImgSm] = useState(null);
-  const [trailer, setTrailer] = useState(null);
-  const [video, setVideo] = useState(null);
-  const [uploaded, setUploaded] = useState(0);
+  const [image, setImg] = useState();
+  const [title, setTitle] = useState();
+  const [thumbnail, setImgSm] = useState();
+  const [description, setDescrption] = useState();
+  const [video, setVideo] = useState();
+  const [category, setCategory] = useState();
+  const [year, setYear] = useState();
+  const [duration, setDuration] = useState();
 
-  //const { dispatch } = useContext(MovieContext);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setMovie({ ...movie, [e.target.name]: value });
-  };
-
-  
-  const handleUpload = (e) => {
-    e.preventDefault();
-   
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // createMovie(movie, dispatch);
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("year", year);
+    formData.append("duration", duration);
+    formData.append("category", category);
+    formData.append("video", video);
+    axios
+      .post("http://localhost:8000/Netflix-API/addMovie", formData)
+      .then(() => {
+        dispatch(
+          createMovie(formData)
+        );
+      });
   };
 
   return (
@@ -36,32 +45,26 @@ const AddNewMovie = () => {
         <Navbar />
         <div className="newMovie">
           <h1 className="addMovieTitle">New Movie</h1>
-          <form className="addMovieForm">
+          <form className="addMovieForm" enctype="multipart/form-data">
             <div className="addMovieItem">
               <label>Image</label>
               <input
                 type="file"
+                placeholder="image"
                 id="img"
-                name="img"
-                onChange={(e) => setImg(e.target.files[0])}
+                name="image"
+                onChange={(e) => {setImg(e.target.files[0])}}
               />
             </div>
-            <div className="addMovieItem">
-              <label>Title image</label>
-              <input
-                type="file"
-                id="imgTitle"
-                name="imgTitle"
-                onChange={(e) => setImgTitle(e.target.files[0])}
-              />
-            </div>
+
             <div className="addMovieItem">
               <label>Thumbnail image</label>
               <input
-                type="file"
+                type="text"
+                placeholder="Image"
                 id="imgSm"
                 name="imgSm"
-                onChange={(e) => setImgSm(e.target.files[0])}
+                onChange={(e) => setImgSm(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -70,7 +73,7 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Title"
                 name="title"
-                onChange={handleChange}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -79,7 +82,7 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="description"
                 name="desc"
-                onChange={handleChange}
+                onChange={(e) => setDescrption(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -88,16 +91,16 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Year"
                 name="year"
-                onChange={handleChange}
+                onChange={(e) => setYear(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
-              <label>Genre</label>
+              <label>Category</label>
               <input
                 type="text"
-                placeholder="Genre"
-                name="genre"
-                onChange={handleChange}
+                placeholder="Category"
+                name="category"
+                onChange={(e) => setCategory(e.target.value)}
               />
             </div>
             <div className="addMovieItem">
@@ -106,50 +109,23 @@ const AddNewMovie = () => {
                 type="text"
                 placeholder="Duration"
                 name="duration"
-                onChange={handleChange}
+                onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-            <div className="addMovieItem">
-              <label>Limit</label>
-              <input
-                type="text"
-                placeholder="limit"
-                name="limit"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="addMovieItem">
-              <label>Is Series?</label>
-              <select name="isSeries" id="isSeries" onChange={handleChange}>
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-              </select>
-            </div>
-            <div className="addMovieItem">
-              <label>Trailer</label>
-              <input
-                type="file"
-                name="trailer"
-                onChange={(e) => setTrailer(e.target.files[0])}
-              />
-            </div>
+
             <div className="addMovieItem">
               <label>Video</label>
               <input
-                type="file"
+                type="text"
+                placeholder="video url"
                 name="video"
-                onChange={(e) => setVideo(e.target.files[0])}
+                onChange={(e) => setVideo(e.target.value)}
               />
             </div>
-            {uploaded === 0 ? (
-              <button className="addMovieButton" onClick={handleSubmit}>
-                Create
-              </button>
-            ) : (
-              <button className="addMovieButton" onClick={handleUpload}>
-                Upload
-              </button>
-            )}
+
+            <button className="addMovieButton" onClick={handleSubmit}>
+              Create
+            </button>
           </form>
         </div>
       </div>

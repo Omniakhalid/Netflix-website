@@ -26,10 +26,10 @@ switch (type){
             return {...item,...payload}
             else return item;
         });
-        return {
-            ...state,
-            title: payload.title,
-          }
+        break;
+       
+     
+        
         default:
         return state;
 }

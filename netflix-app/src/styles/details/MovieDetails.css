@@ -53,9 +53,11 @@
 }
 
 .movieInfoItem {
-  width: 150px;
+  width: 550px;
   display: flex;
-  justify-content: space-between;
+  
+  /* justify-content: space-between; */
+  
 }
 
 .movieInfoKey {
@@ -63,6 +65,7 @@
 }
 
 .movieInfoValue {
+
   font-weight: 300;
 }
 
