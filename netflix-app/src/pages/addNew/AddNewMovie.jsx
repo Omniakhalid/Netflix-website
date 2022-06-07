@@ -11,7 +11,6 @@ const AddNewMovie = () => {
   const dispatch = useDispatch();
 
   const [movie, setMovie] = useState(null);
-
   const [image, setImg] = useState();
   const [title, setTitle] = useState();
   const [thumbnail, setImgSm] = useState();
@@ -21,40 +20,21 @@ const AddNewMovie = () => {
   const [year, setYear] = useState();
   const [duration, setDuration] = useState();
 
-  //const { dispatch } = useContext(MovieContext);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setMovie({ ...movie, [e.target.name]: value });
-  };
-
   const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("year", year);
+    formData.append("duration", duration);
+    formData.append("category", category);
+    formData.append("video", video);
     axios
-      .post("http://localhost:8000/Netflix-API/addMovie", {
-        title,
-        description,
-        image,
-        thumbnail,
-        video,
-        year,
-        duration,
-        category,
-      })
+      .post("http://localhost:8000/Netflix-API/addMovie", formData)
       .then(() => {
-        console.log("updaaaaaate");
         dispatch(
-          createMovie({
-            title,
-            description,
-            image,
-            thumbnail,
-            video,
-            year,
-            duration,
-            category,
-          })
+          createMovie(formData)
         );
-        console.log("updaaaaaat222e");
       });
   };
 
@@ -65,15 +45,15 @@ const AddNewMovie = () => {
         <Navbar />
         <div className="newMovie">
           <h1 className="addMovieTitle">New Movie</h1>
-          <form className="addMovieForm">
+          <form className="addMovieForm" enctype="multipart/form-data">
             <div className="addMovieItem">
               <label>Image</label>
               <input
-                type="text"
-                placeholder="Img"
+                type="file"
+                placeholder="image"
                 id="img"
-                name="img"
-                onChange={(e) => setImg(e.target.value)}
+                name="image"
+                onChange={(e) => {setImg(e.target.files[0])}}
               />
             </div>
 

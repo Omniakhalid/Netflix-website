@@ -9,12 +9,11 @@ const usersSchema = new mongoose.Schema(
     phone: { type: Number },
     role: { type: String, default: "user" },
     _id: {
-        type: mongoose.Types.ObjectId,
-        required: false
+      type: mongoose.Types.ObjectId,
+      required: false,
     },
   },
-  { timestamps: true },
-
+  { timestamps: true }
 );
 
 module.exports = usersSchema;

@@ -14,10 +14,10 @@ const moviesSchema = new mongoose.Schema(
     year: { type: Number },
     duration: { type: String, default: "2 hours 15 mins" },
     category: { type: String },
-    _id: {
-      type: mongoose.Types.ObjectId,
-      required: false,
-    },
+    // _id: {
+    //   type: mongoose.Types.ObjectId,
+    //   required: false,
+    // },
   },
   { timestamps: true }
 );

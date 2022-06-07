@@ -104,7 +104,7 @@ const MovieDetails = () => {
           <div className="movieTop">
             <div className="movieTopRight">
               <div className="movieInfoTop">
-                <img src={movie.image} alt="" className="movieInfoImg" />
+                <img src={`http://localhost:8000/${movie.image}`} alt="" className="movieInfoImg" />
                 <span className="movieName">{movie.title}</span>
               </div>
               <div className="movieInfoBottom">
@@ -162,7 +162,7 @@ const MovieDetails = () => {
               </div>
               <div className="movieFormRight">
                 <div className="movieUpload">
-                  <img src={movie.image} alt="" className="movieUploadImg" />
+                  <img src={`http://localhost:8000/${movie.image}`} alt="" className="movieUploadImg" />
                   <label htmlFor="file">
                     <PublishIcon className="imgUploadicon" />
                   </label>
