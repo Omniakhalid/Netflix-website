@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "title": "Enjoy on your TV.",
+      "subTitle": "Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
+      "image": "https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png",
+      "video":"https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-0819.m4v",
+      "alt": "TV",
+      "direction": "row"
+    },
+    {
+      "id": 2,
+      "title": "Download your shows to watch offline.",
+      "subTitle": "Download your shows to watch offline.",
+      "image": "https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg",
+      "image2":"https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png",
+      "alt": "Watch on mobile",
+      "direction": "row-reverse"
+    },
+    {
+      "id": 3,
+      "title": "Watch everywhere.",
+      "subTitle": "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.",
+      "image": "https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png",
+      "alt": "Money Heist on Netflix",
+      "video":"https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v",
+      "direction": "row"
+    },
+    {
+        "id": 4,
+        "title": "Create profiles for kids.",
+        "subTitle": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership.",
+        "image": "https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/cards/kidsValueProp.png",
+        "alt": "kids",
+        "direction": "row-reverse"
+      }
+  ]

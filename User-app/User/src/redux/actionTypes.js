@@ -1,0 +1,5 @@
+export const GET_ALL_MOVIES = 'MOVIES/GET_ALL';
+export const GET_MOVIE_BY_ID = 'MOVIES/GET_BY_ID';
+export const GET_MOVIE_BY_CATEGORY = 'MOVIES/GET_BY_CATEGORY';
+export const GET_ALL_GENERES = 'GENERES/GET_ALL';
+export const GET_LISTS = 'LIST/GET_ALL';

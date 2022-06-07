@@ -1,0 +1,20 @@
+body {
+	background-color: #0b0b0b;
+	color: #ffffff;
+	font-family: 'Roboto', sans-serif;
+	min-width: 900px;
+}
+.image-container:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.movie-app > .row {
+	overflow-x: scroll;
+	flex-wrap: nowrap;
+	margin-block-start: auto;
+}
+.movie-app > .row::-webkit-scrollbar {
+  display: none;
+}
+
+
