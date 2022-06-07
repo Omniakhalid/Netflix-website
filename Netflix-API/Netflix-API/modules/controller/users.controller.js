@@ -24,7 +24,7 @@ const addUser = async (req, res) => {
   } else {
     bcrypt.hash(password, 8, async function (err, hash) {
       if (err) {
-        res.json({ error: "error in hash" });
+        res.json({error: "error in Hash" ,statusCode:400});
       } else {
         const hashedUser = await users.insertMany({
           userName,
@@ -34,7 +34,7 @@ const addUser = async (req, res) => {
           phone,
           role,
         });
-        res.json({ message: "User Added Successfully", hashedUser });
+        res.json({ message: "User Added Successfully",statusCode:200, hashedUser });
       }
     });
   }
@@ -66,19 +66,19 @@ const signIn = async (req, res) => {
   const foundUser = await users.findOne({ email });
 
   if (!foundUser) {
-    res.json({ error: "User notFound" });
+    res.json({ error: "User notFound",statusCode:400 });
   } else {
     bcrypt.hash(password, 8, async function (err, hash) {
       if (err) {
-        res.json({ error: "error in hash" });
+        res.json({ error: "error in hash",statusCode:400 });
       } else {
         const matchedUser = await bcrypt.compare(password, foundUser.password);
         if (matchedUser) {
           //Synchronous Sign with default (HMAC SHA256)
           var token = jwt.sign({ id: foundUser._id }, "shhhhh");
-          res.json({ message: "Done with token", token });
+          res.json({ message: "Done with token",statusCode:200, token });
         } else {
-          res.json({ error: "invalid password" });
+          res.json({ error: "invalid password",statusCode:400});
         }
       }
     });
