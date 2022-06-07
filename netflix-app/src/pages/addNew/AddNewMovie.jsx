@@ -11,7 +11,7 @@ const AddNewMovie = () => {
   const dispatch = useDispatch();
 
   const [movie, setMovie] = useState(null);
-
+ 
   const [image, setImg] = useState();
   const [title, setTitle] = useState();
   const [thumbnail, setImgSm] = useState();
@@ -23,6 +23,7 @@ const AddNewMovie = () => {
 
   //const { dispatch } = useContext(MovieContext);
 
+  
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
@@ -65,15 +66,15 @@ const AddNewMovie = () => {
         <Navbar />
         <div className="newMovie">
           <h1 className="addMovieTitle">New Movie</h1>
-          <form className="addMovieForm">
+          <form className="addMovieForm" enctype="multipart/form-data">
             <div className="addMovieItem">
               <label>Image</label>
               <input
-                type="text"
+                type="file"
                 placeholder="Img"
                 id="img"
-                name="img"
-                onChange={(e) => setImg(e.target.value)}
+                name="image"
+                onChange={(e) => setImg( e.target.files[0] )}
               />
             </div>
 
