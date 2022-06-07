@@ -16,29 +16,13 @@ const getMovieById = async (req, res) => {
 
 //CREATE
 const addMovie = async (req, res) => {
-  const {
-    title,
-    description,
-    image,
-    thumbnail,
-    video,
-    year,
-    duration,
-    category,
-  } = { ...req.body, image: req.file.path };
+  const newMovie = new movies({ ...req.body, image: req.file.path });
+  console.log(req);
   await movies
-    .insertMany({
-      title,
-      description,
-      image,
-      thumbnail,
-      video,
-      year,
-      duration,
-      category,
-    })
+    .insertMany(newMovie)
     .then(() => {
       res.send("added Successfully");
+      console.log("added");
     })
     .catch((err) => res.json({ message: "my error", err }));
 };

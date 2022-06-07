@@ -46,6 +46,14 @@ const Sidebar = () => {
               <span>TV Shows</span>{" "}
             </li>
           </Link>
+
+           <Link to="/categories" replace className="link">
+            <li>
+              <ConnectedTvOutlinedIcon className={classes.icon} />
+              <span>Categories</span>{" "}
+            </li>
+          </Link>
+
           <p className={classes.title}>User</p>
           <Link to="/adminprofile" replace className="link">
             <li>

@@ -15,7 +15,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
- 
+
+}
+.movieContainer{
+padding: 5%;
+}
+.movieTitle{
+text-align: center;
+margin-top: 20px;
+font-weight: bold;
+font-size: xx-large;
+
 }
 .movieAddButton {
   width: 180px;

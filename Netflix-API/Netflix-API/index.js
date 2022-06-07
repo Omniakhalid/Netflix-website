@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 var cors = require("cors");
+var path = require("path");
+
 const app = express();
 app.use(express.json());
-
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const connection = require("./dbConfig/db.config");
 connection();
 
